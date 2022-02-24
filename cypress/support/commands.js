@@ -23,3 +23,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (userName, password) => {
+    cy.visit("https://commerce-staging.ibo.com/admin")
+    cy.url().should('include','commerce-staging.ibo.com')
+    cy.get('#username').clear().type(userName);
+    // cy.get('[type=password]', { timeout: 10000 }).should('be.visible');
+    // cy.get('#login').click();
+    cy.get('#login').clear().type(password).type('{enter}');
+
+})
+
+import 'cypress-file-upload';
