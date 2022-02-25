@@ -28,5 +28,7 @@ describe('Page Object Model', () => {
         homePage.settingButton();
         homePage.clickOnEboProduct();
         eboProductImportPage.chooseFileButton(file);
+        cy.wait(3000)
+        eboProductImportPage.validateTable();
     })
 })
