@@ -26,22 +26,32 @@ describe('Page Object Model', () => {
         const homePage = new HomePage();
         const eboProductImportPage = new EboProductImportPage();
         const file = 'success_6214c9838276a.csv'
-        //homePage.settingButton();
-        //homePage.clickOnEboProduct();
-        //eboProductImportPage.chooseFileButton(file);
-    })
-    it('Products page to search sku', function(){
-        
         const productsPage = new ProductsPage();
+        homePage.settingButton();
+        homePage.clickOnEboProduct();
+        eboProductImportPage.chooseFileButton(file);
         productsPage.catalogButton();
         productsPage.clickOnProducts();
-        cy.login(this.user.userName,this.user.password);
+        //cy.login(this.user.userName,this.user.password);
         productsPage.catalogButton();
         productsPage.clickOnProducts();
         cy.wait(36000);
         productsPage.clearSKU();
         cy.wait(15000);
         productsPage.searchSKU();
-    
     })
+    // it('Products page to search sku', function(){
+        
+    //     const productsPage = new ProductsPage();
+    //     productsPage.catalogButton();
+    //     productsPage.clickOnProducts();
+    //     cy.login(this.user.userName,this.user.password);
+    //     productsPage.catalogButton();
+    //     productsPage.clickOnProducts();
+    //     cy.wait(36000);
+    //     productsPage.clearSKU();
+    //     cy.wait(15000);
+    //     productsPage.searchSKU();
+    
+    // })
 })
