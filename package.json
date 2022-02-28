@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "cypress:run-chrome": "cypress run --browser chrome",
+    "test": "npm run cy:open || npm run posttest",
+    "cy:open": "cypress open --env allure=true",
+    "cy:run": "cypress run --headed --spec 'cypress/integration/1-getting-started/magentoPage.ts' --env allure=true",
+    "cypress:run-chrome": "cypress run --browser chrome --env allure=true",
     "cypress:run-chrome-head": "cypress run --headed --browser chrome",
-    "cypress:run-headed": "cypress run --headed"
+    "cypress:run-headed": "cypress run --headed",
+    "allure:report": "allure generate allure-results --clean -o allure-report",
+    "posttest": "npm run allure:report"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.26.5",
+    "allure-commandline": "^2.17.2",
     "cypress": "^9.5.0",
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "typescript": "^4.5.5"
   }
 }

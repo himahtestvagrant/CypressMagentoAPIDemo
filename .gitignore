@@ -1,1 +1,6 @@
 .idea
+# allure report
+allure-report
+
+#allure results
+allure-results
