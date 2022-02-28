@@ -4,13 +4,6 @@ import APIPage from "../../support/magentoPage/APIPage";
 import EboProductImportPage from "../../support/magentoPage/EboProductImportPage"
 import {getAProductRequest} from "../../fixtures/magentoPayload";
 
-describe('Magento API Describe Block', ()=>{
-    it('Get A Product',()=>{
-        const apiPage = new APIPage();
-        apiPage.getAProductApi(getAProductRequest);
-    })
-})
-
 describe('Page Object Model', () => {
     beforeEach(function () {
         // "this" points at the test context object
@@ -19,7 +12,7 @@ describe('Page Object Model', () => {
             this.user = user;
         })
     })  
-    it('Login In Magento Page', function(){
+    it.only('Login In Magento Page', function(){
         // cy.login(this.user.userName)
         cy.login(this.user.userName,this.user.password);
         const homePage = new HomePage();
@@ -30,5 +23,13 @@ describe('Page Object Model', () => {
         eboProductImportPage.chooseFileButton(file);
         cy.wait(3000)
         eboProductImportPage.validateTable();
+    })
+})
+
+
+describe('Magento API Describe Block', ()=>{
+    it('Get A Product',()=>{
+        const apiPage = new APIPage();
+        apiPage.getAProductApi(getAProductRequest);
     })
 })

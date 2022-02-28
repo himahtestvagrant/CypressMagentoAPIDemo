@@ -1,4 +1,4 @@
-export const getAProductRequest=`{
+export const getAProductRequest = `{
     products(filter:  {sku: {eq: "1000342396"}}) {
       items {
         id

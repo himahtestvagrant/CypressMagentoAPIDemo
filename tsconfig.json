@@ -3,7 +3,7 @@
     "target": "es2016",
     "lib": ["dom","es6"],
     "module": "commonjs",
-    "types": ["cypress"],
+    "types": ["cypress","cypress-file-upload"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
