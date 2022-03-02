@@ -29,3 +29,29 @@ module.exports = (on, config) => {
     allureWriter(on, config);
     return config;
 };
+
+const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
+//module.exports = (on, config) => {
+//  on('task', {downloadFile})
+//}
+
+const unzipping = require('./unzipping')
+ const writeInCsv = require('./writeInCsv')
+//
+////const fs = require('fs');
+////const csv = require("csvtojson");
+////const { Parser } = require("json2csv");
+//
+module.exports = (on, config) => {
+    on('task', {
+        'unzipping': unzipping.unzip,
+        downloadFile,
+        'writeInCsv': writeInCsv.writeCsv
+    })
+}
+//
+////module.exports = (on, config) => {
+////  on('task', {
+////      'writeInCsv': writeInCsv.writeCsv,
+////  })
+////}

@@ -16,15 +16,22 @@ describe('Page Object Model', () => {
     it.only('Login In Magento Page', function(){
         // cy.login(this.user.userName)
         cy.login(this.user.userName,this.user.password);
-        //const homePage = new HomePage();
-        // const eboProductImportPage = new EboProductImportPage();
-        // const file = 'success_6214c9838276a.csv'
+        const homePage = new HomePage();
+         const eboProductImportPage = new EboProductImportPage();
+         const file = 'demo.csv'
         const productsPage = new ProductsPage();
-        // homePage.settingButton();
-        // homePage.clickOnEboProduct();
-        // eboProductImportPage.chooseFileButton(file);
-        // cy.wait(3000)
-        // eboProductImportPage.validateTable();
+         homePage.settingButton();
+         homePage.clickOnEboProduct();
+         eboProductImportPage.chooseFileButton(file);
+         cy.wait(3000)
+         eboProductImportPage.validateTable();
+         eboProductImportPage.downloadFile();
+         let path = 'cypress/downloads/';
+         let file1 = 'demo.zip';
+         eboProductImportPage.unzipFile(path,file1);
+         let path1 = 'cypress/fixtures/';
+         let file2 = 'demo.csv';
+//         eboProductImportPage.writeInCsv(path1,file2);
         productsPage.catalogButton();
                 productsPage.clickOnProducts();
                 cy.wait(36000);

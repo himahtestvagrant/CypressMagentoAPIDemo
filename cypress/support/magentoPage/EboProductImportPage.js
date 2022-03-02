@@ -10,7 +10,7 @@ class EboProductImportPage {
         let count = 0;
         cy.get('tr td:nth-child(6)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
-            if (text.includes('odoo_62177537e4c00.csv')) {
+            if (text.includes('odoo_621da86a18ec3.csv')) {
                 cy.log('File has been added');
                 count+=1;
                 cy.log(text);
@@ -20,6 +20,28 @@ class EboProductImportPage {
             if(count<=0) throw "File Not Found";
         })
         
+    }
+    downloadFile(){
+        cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
+            const text = $el.text();
+            if (text.includes('success')) {
+                // cy.get('tr td').scrollTo('right');
+                cy.get(`[data-repeat-index="${index}"] > .data-grid-actions-cell > .action-menu-item`, { timeout: 1000 }).should('have.attr', 'href')
+                .then((href) => {
+                    cy.downloadFile(`${href}`,'cypress/downloads','demo.zip')
+                    cy.log(href)
+                  })
+                  return false;   
+            }
+        });
+    }
+
+    unzipFile(path,file){
+        cy.task('unzipping', { path, file });
+    }
+
+    writeInCsv(path,file){
+        cy.task('writeInCsv', { path, file });
     }
 }
 

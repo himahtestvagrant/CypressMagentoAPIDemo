@@ -34,4 +34,5 @@ Cypress.Commands.add('login', (userName, password) => {
 
 })
 
+require('cypress-downloadfile/lib/downloadFileCommand')
 import 'cypress-file-upload';
