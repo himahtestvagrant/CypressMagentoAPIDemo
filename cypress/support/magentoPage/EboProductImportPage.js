@@ -10,7 +10,7 @@ class EboProductImportPage {
         let count = 0;
         cy.get('tr td:nth-child(6)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
-            if (text.includes('odoo_621da86a18ec3.csv')) {
+            if (text.includes('odoo_62208a89df98e.csv')) {
                 cy.log('File has been added');
                 count+=1;
                 cy.log(text);
@@ -24,7 +24,9 @@ class EboProductImportPage {
     downloadFile(){
         cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
-            if (text.includes('success')) {
+            const failureBoxText = $el.next().next().text();
+            cy.log(failureBoxText)
+            if (text.includes('success') && !failureBoxText.includes("failure")) {
                 // cy.get('tr td').scrollTo('right');
                 cy.get(`[data-repeat-index="${index}"] > .data-grid-actions-cell > .action-menu-item`, { timeout: 1000 }).should('have.attr', 'href')
                 .then((href) => {
@@ -36,12 +38,16 @@ class EboProductImportPage {
         });
     }
 
-    unzipFile(path,file){
-        cy.task('unzipping', { path, file });
+    unzipFile(path){
+        cy.task('unzipping', { path });
     }
 
-    writeInCsv(path,file){
-        cy.task('writeInCsv', { path, file });
+    writeInCsv(path,uniqueGroupId){
+        cy.task('writeInCsv', { path, uniqueGroupId });
+    }
+
+    readCsvFile(path){
+            cy.task('readCsv', { path });
     }
 }
 

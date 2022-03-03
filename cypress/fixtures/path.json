@@ -1,0 +1,7 @@
+{
+    "demoCsv": "/Users/k.k.k/IdeaProjects/CypressMagentoAPIDemo/cypress/fixtures/demo.csv",
+    "successCsv": "/Users/k.k.k/IdeaProjects/CypressMagentoAPIDemo/cypress/downloads/app/6y5qflhektwpi_stg/var/export/success_622089d7e9344.csv",
+    "zipFile": "/Users/k.k.k/IdeaProjects/CypressMagentoAPIDemo/cypress/downloads/demo.zip",
+    "fixtures": "/Users/k.k.k/IdeaProjects/CypressMagentoAPIDemo/cypress/fixtures",
+    "downloads": "/Users/k.k.k/IdeaProjects/CypressMagentoAPIDemo/cypress/downloads"
+}

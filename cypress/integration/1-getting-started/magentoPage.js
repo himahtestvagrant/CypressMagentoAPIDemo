@@ -12,33 +12,37 @@ describe('Page Object Model', () => {
             // "this" is still the test context object
             this.user = user;
         })
+        cy.fixture('successSku').then((productData) => {
+             // "this" is still the test context object
+             this.productData = productData;
+        })
+        cy.fixture('path').then((filePath) => {
+             // "this" is still the test context object
+             this.filePath = filePath;
+        })
     })  
     it.only('Login In Magento Page', function(){
         // cy.login(this.user.userName)
         cy.login(this.user.userName,this.user.password);
         const homePage = new HomePage();
          const eboProductImportPage = new EboProductImportPage();
-         const file = 'demo.csv'
         const productsPage = new ProductsPage();
          homePage.settingButton();
          homePage.clickOnEboProduct();
+         eboProductImportPage.writeInCsv(this.filePath.demoCsv,this.user.uniqueGroupId);
+         const file = 'product.csv';
          eboProductImportPage.chooseFileButton(file);
-         cy.wait(3000)
+         cy.wait(6000)
          eboProductImportPage.validateTable();
          eboProductImportPage.downloadFile();
-         let path = 'cypress/downloads/';
-         let file1 = 'demo.zip';
-         eboProductImportPage.unzipFile(path,file1);
-         let path1 = 'cypress/fixtures/';
-         let file2 = 'demo.csv';
-//         eboProductImportPage.writeInCsv(path1,file2);
-        productsPage.catalogButton();
+         eboProductImportPage.unzipFile(this.filePath.zipFile);
+         eboProductImportPage.readCsvFile(this.filePath.successCsv);
+         productsPage.catalogButton();
                 productsPage.clickOnProducts();
                 cy.wait(36000);
                 productsPage.clearSKU();
                 cy.wait(15000);
                 productsPage.searchSKU();
-
     })
 })
 
