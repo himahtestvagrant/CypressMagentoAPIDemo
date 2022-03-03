@@ -36,22 +36,14 @@ const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
 //}
 
 const unzipping = require('./unzipping')
- const writeInCsv = require('./writeInCsv')
-//
-////const fs = require('fs');
-////const csv = require("csvtojson");
-////const { Parser } = require("json2csv");
-//
+const writeInCsv = require('./writeInCsv')
+const readCsv = require('./readCsv')
+
 module.exports = (on, config) => {
     on('task', {
         'unzipping': unzipping.unzip,
         downloadFile,
-        'writeInCsv': writeInCsv.writeCsv
+        'writeInCsv': writeInCsv.writeCsv,
+        'readCsv': readCsv.readCsvFile
     })
 }
-//
-////module.exports = (on, config) => {
-////  on('task', {
-////      'writeInCsv': writeInCsv.writeCsv,
-////  })
-////}
