@@ -22,7 +22,7 @@ describe('Page Object Model', () => {
         })
     })  
     it.only('Login In Magento Page', function(){
-        // cy.login(this.user.userName)
+        cy.login(this.user.userName)
         cy.login(this.user.userName,this.user.password);
         const homePage = new HomePage();
          const eboProductImportPage = new EboProductImportPage();
@@ -40,8 +40,6 @@ describe('Page Object Model', () => {
          productsPage.catalogButton();
                 productsPage.clickOnProducts();
                 cy.wait(36000);
-                productsPage.clearSKU();
-                cy.wait(15000);
                 productsPage.searchSKU();
     })
 })
