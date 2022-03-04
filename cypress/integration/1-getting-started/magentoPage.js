@@ -41,6 +41,9 @@ describe('Page Object Model', () => {
                 productsPage.clickOnProducts();
                 cy.wait(36000);
                 productsPage.searchSKU();
+                cy.wait(10000);
+                productsPage.validateUGid();
+                    
     })
 })
 
