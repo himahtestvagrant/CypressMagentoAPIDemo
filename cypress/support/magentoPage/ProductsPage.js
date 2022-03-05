@@ -13,7 +13,7 @@ class ProductsPage{
         try{ 
            
             cy.get('body').then((body) => {
-                if (body.find(':nth-child(1) > .admin__data-grid-filters-current > .admin__current-filters-actions-wrap > .action-tertiary',{ timeout: 10000 }).length > 0) {
+                if (body.find('._show> .admin__current-filters-actions-wrap > .action-clear',{ timeout: 10000 }).length > 0) {
                     cy.wait(15000)
                     cy.log("inside if condition")
                     cy.log("the length of result is"+ body.find(':nth-child(1) > .admin__data-grid-filters-current > .admin__current-filters-actions-wrap > .action-tertiary',{ timeout: 10000 }).length)

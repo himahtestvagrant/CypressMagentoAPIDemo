@@ -22,11 +22,13 @@ describe('Page Object Model', () => {
         })
     })  
     it.only('Login In Magento Page', function(){
-        cy.login(this.user.userName)
+        //cy.login(this.user.userName)
+        //cy.log("User id to be used is "+this.user.userName)
+        //cy.log("Password to be used is "+this.user.password)
         cy.login(this.user.userName,this.user.password);
         const homePage = new HomePage();
-         const eboProductImportPage = new EboProductImportPage();
         const productsPage = new ProductsPage();
+        const eboProductImportPage = new EboProductImportPage();
          homePage.settingButton();
          homePage.clickOnEboProduct();
          eboProductImportPage.writeInCsv(this.filePath.demoCsv,this.user.uniqueGroupId);
