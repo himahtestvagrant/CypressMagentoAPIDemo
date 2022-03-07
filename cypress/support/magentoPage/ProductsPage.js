@@ -69,6 +69,22 @@ class ProductsPage{
         })
         
     }
+    fetchSKU(){
+         let SKU;
+         cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
+            const text = $el.text();
+            if (text.includes('Configurable Product')) {
+                SKU = $el.next().next().text();
+                cy.log(SKU)
+                
+            }
+        });
+        return SKU;
+       
+
+    }
+
+    
 
 
 
