@@ -4,7 +4,7 @@ import APIPage from "../../support/magentoPage/APIPage";
 import EboProductImportPage from "../../support/magentoPage/EboProductImportPage"
 import {getAProductRequest} from "../../fixtures/magentoPayload";
 import ProductsPage from "../../support/magentoPage/ProductsPage";
-
+let SKU;
 describe('Page Object Model', () => {
     beforeEach(function () {
         // "this" points at the test context object
@@ -34,7 +34,7 @@ describe('Page Object Model', () => {
          eboProductImportPage.writeInCsv(this.filePath.demoCsv);
          const file = 'product.csv';
          eboProductImportPage.chooseFileButton(file);
-         cy.wait(6000)
+         cy.wait(36000)
          eboProductImportPage.validateTable();
 //         eboProductImportPage.downloadFile();
 //         eboProductImportPage.unzipFile(this.filePath.zipFile);
@@ -46,10 +46,10 @@ describe('Page Object Model', () => {
                 cy.wait(10000);
                 productsPage.validateUGid();
                 cy.wait(10000);
-                SKU=  productsPage.fetchSKU();
-  
+                SKU = productsPage.fetchSKU();
     })
 })
+
 
 
 describe('Magento API Describe Block', ()=>{

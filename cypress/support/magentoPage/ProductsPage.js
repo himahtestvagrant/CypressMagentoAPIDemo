@@ -9,9 +9,8 @@ class ProductsPage{
         
     }
 
-    searchSKU(){
-        try{ 
-           
+    searchUniqueGroupId(uniqueGroupId){
+        try{
             cy.get('body').then((body) => {
                 if (body.find('._show> .admin__current-filters-actions-wrap > .action-clear',{ timeout: 10000 }).length > 0) {
                     cy.wait(15000)
@@ -48,7 +47,7 @@ class ProductsPage{
         cy.scrollTo('top');
          cy.get('.data-grid-filters-action-wrap >.action-default').eq(0).click({force: true});
          cy.wait(1000);
-        cy.get('.admin__control-text[name="unique_group_id"]').type("04032022-fan-3")
+        cy.get('.admin__control-text[name="unique_group_id"]').type(uniqueGroupId)
         cy.wait(1000);
         cy.get('.action-secondary').click()
     
@@ -70,7 +69,6 @@ class ProductsPage{
         })
         
     }
-
     fetchSKU(){
          let SKU;
          cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
@@ -78,15 +76,15 @@ class ProductsPage{
             if (text.includes('Configurable Product')) {
                 SKU = $el.next().next().text();
                 cy.log(SKU)
-
+                
             }
         });
         return SKU;
-
+       
 
     }
 
-
+    
 
 
 
