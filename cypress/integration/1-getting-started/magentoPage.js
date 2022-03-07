@@ -45,14 +45,16 @@ describe('Page Object Model', () => {
                 productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
                 cy.wait(10000);
                 productsPage.validateUGid();
-                    
+                cy.wait(10000);
+                SKU=  productsPage.fetchSKU();
+  
     })
 })
 
 
 describe('Magento API Describe Block', ()=>{
     it('Get A Product',()=>{
-        const apiPage = new APIPage();
+        const apiPage = new APIPage(SKU);
         apiPage.getAProductApi(getAProductRequest);
     })
 })
