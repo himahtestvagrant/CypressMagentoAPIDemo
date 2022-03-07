@@ -42,8 +42,8 @@ class EboProductImportPage {
         cy.task('unzipping', { path });
     }
 
-    writeInCsv(path,uniqueGroupId){
-        cy.task('writeInCsv', { path, uniqueGroupId });
+    writeInCsv(path){
+        cy.task('writeInCsv', { path });
     }
 
     readCsvFile(path){

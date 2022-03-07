@@ -11,7 +11,7 @@ const csv = require("csvtojson");
 const readCsvFile= async ({ path }) => {
     const csvFile =await csv().fromFile(path)
     .then((jsonObj) => {
-         fs.writeFileSync("./cypress/fixtures/successSku.json", JSON.stringify(jsonObj), "utf-8", (err) =>{
+         fs.writeFileSync("./cypress/fixtures/product.json", JSON.stringify(jsonObj), "utf-8", (err) =>{
             if(err) console.log(err);
         });
     });

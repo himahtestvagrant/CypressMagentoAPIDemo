@@ -9,7 +9,7 @@ const { Parser } = require("json2csv");
 //     end = new Date().getTime();
 // }
 //}
-const writeCsv= async ({ path, uniqueGroupId }) => {
+const writeCsv= async ({ path }) => {
                     const csvFile =await csv().fromFile(path);
 //                    console.log("unique group id is : "+csvFile[0].unique_group_id);
                     csvFile[0].unique_group_id = getUniqueGroupId();
