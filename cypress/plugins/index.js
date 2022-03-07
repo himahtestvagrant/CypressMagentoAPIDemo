@@ -21,14 +21,9 @@ module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 }
-
+/// <reference types="@shelex/cypress-allure-plugin" />
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 // import allureWriter from "@shelex/cypress-allure-plugin/writer";
-
-module.exports = (on, config) => {
-    allureWriter(on, config);
-    return config;
-};
 
 const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
 //module.exports = (on, config) => {
@@ -46,4 +41,6 @@ module.exports = (on, config) => {
         'writeInCsv': writeInCsv.writeCsv,
         'readCsv': readCsv.readCsvFile
     })
+    allureWriter(on, config);
+        return config;
 }
