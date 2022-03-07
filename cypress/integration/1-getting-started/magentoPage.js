@@ -21,7 +21,7 @@ describe('Page Object Model', () => {
              this.filePath = filePath;
         })
     })  
-    it.only('Login In Magento Page', function(){
+    it('Login In Magento Page', function(){
         //cy.login(this.user.userName)
         //cy.log("User id to be used is "+this.user.userName)
         //cy.log("Password to be used is "+this.user.password)
@@ -45,14 +45,14 @@ describe('Page Object Model', () => {
                 productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
                 cy.wait(10000);
                 productsPage.validateUGid();
-                    
+
     })
 })
 
 
 describe('Magento API Describe Block', ()=>{
-    it('Get A Product',()=>{
+    it.only('Get A Product',()=>{
         const apiPage = new APIPage();
-        apiPage.getAProductApi(getAProductRequest);
+        apiPage.getAProductApi(getAProductRequest("1000006264"));
     })
 })

@@ -47,7 +47,7 @@ class ProductsPage{
         cy.scrollTo('top');
          cy.get('.data-grid-filters-action-wrap >.action-default').eq(0).click({force: true});
          cy.wait(1000);
-        cy.get('.admin__control-text[name="unique_group_id"]').type(uniqueGroupId)
+        cy.get('.admin__control-text[name="unique_group_id"]').type('04032022-fan-3')
         cy.wait(1000);
         cy.get('.action-secondary').click()
     
@@ -68,6 +68,15 @@ class ProductsPage{
             if(count<=0) throw "Unique group id Not Found";
         })
         
+    }
+
+    deleteCreatedSku(){
+        cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
+            cy.wrap($el).click();
+        });
+        cy.get('.col-xs-2 > .action-select-wrap > .action-select').click();
+        cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click();
+        cy.get('.action-primary').click();
     }
 
 

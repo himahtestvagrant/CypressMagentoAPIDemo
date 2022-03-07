@@ -1,5 +1,6 @@
-export const getAProductRequest = `{
-    products(filter:  {sku: {eq: "1000342396"}}) {
+export const getAProductRequest =(sku)=>{ 
+  return `{
+    products(filter:  {sku: {eq: "${sku}"}}) {
       items {
         id
         brand_Id
@@ -198,4 +199,5 @@ export const getAProductRequest = `{
         }
       }
     }
-  }`
+  }`;
+}
