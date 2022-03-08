@@ -47,7 +47,7 @@ class ProductsPage{
         cy.scrollTo('top');
          cy.get('.data-grid-filters-action-wrap >.action-default').eq(0).click({force: true});
          cy.wait(1000);
-        cy.get('.admin__control-text[name="unique_group_id"]').type('04032022-fan-3')
+        cy.get('.admin__control-text[name="unique_group_id"]').type(uniqueGroupId)
         cy.wait(1000);
         cy.get('.action-secondary').click()
     
@@ -70,16 +70,33 @@ class ProductsPage{
         
     }
     fetchSKU(){
-         let SKU;
+         var SKU="";
          cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
-            if (text.includes('Configurable Product')) {
-                SKU = $el.next().next().text();
-                cy.log(SKU)
-                
+            if(text.includes('Configurable Product')){
+                // cy.wrap($el).next().next().invoke("text").then((text)=>{
+                //                     return text;
+                // });
+//
+//                const SKU=$el.next().next().text();
+//                cy.log("SKU",SKU).then(()=>{
+//                    return SKU;
+//                })
+
+//                return $el.next().next().text();
+
+                   SKU = $el.next().next().text();
+                   cy.log("sku inside each block: "+SKU);
+
+
             }
         });
-        return SKU;
+//        cy.wait(1000).then(()=>{
+//            cy.log("SKU outside of each block :- "+SKU);
+//                    return SKU;
+//        })
+         cy.log("SKU outside of each block :- "+SKU);
+                             return SKU;
        
 
     }
