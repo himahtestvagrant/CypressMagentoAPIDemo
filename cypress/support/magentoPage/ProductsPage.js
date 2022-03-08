@@ -70,21 +70,47 @@ class ProductsPage{
         
     }
     fetchSKU(){
-         let SKU;
+         var SKU="";
          cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
-            if (text.includes('Configurable Product')) {
-                SKU = $el.next().next().text();
-                cy.log(SKU)
-                
+            if(text.includes('Configurable Product')){
+                // cy.wrap($el).next().next().invoke("text").then((text)=>{
+                //                     return text;
+                // });
+//
+//                const SKU=$el.next().next().text();
+//                cy.log("SKU",SKU).then(()=>{
+//                    return SKU;
+//                })
+
+//                return $el.next().next().text();
+
+                   SKU = $el.next().next().text();
+                   cy.log("sku inside each block: "+SKU);
+
+
             }
         });
-        return SKU;
+//        cy.wait(1000).then(()=>{
+//            cy.log("SKU outside of each block :- "+SKU);
+//                    return SKU;
+//        })
+         cy.log("SKU outside of each block :- "+SKU);
+                             return SKU;
        
 
     }
 
     
+
+    deleteCreatedSku(){
+        cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
+            cy.wrap($el).click();
+        });
+        cy.get('.col-xs-2 > .action-select-wrap > .action-select').click();
+        cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click();
+        cy.get('.action-primary').click();
+    }
 
 
 

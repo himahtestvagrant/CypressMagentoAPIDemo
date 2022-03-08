@@ -21,7 +21,7 @@ describe('Page Object Model', () => {
              this.filePath = filePath;
         })
     })  
-    it.only('Login In Magento Page', function(){
+    it('Login In Magento Page', function(){
         //cy.login(this.user.userName)
         //cy.log("User id to be used is "+this.user.userName)
         //cy.log("Password to be used is "+this.user.password)
@@ -29,24 +29,26 @@ describe('Page Object Model', () => {
         const homePage = new HomePage();
         const productsPage = new ProductsPage();
         const eboProductImportPage = new EboProductImportPage();
-         homePage.settingButton();
-         homePage.clickOnEboProduct();
-         eboProductImportPage.writeInCsv(this.filePath.demoCsv);
-         const file = 'product.csv';
-         eboProductImportPage.chooseFileButton(file);
-         cy.wait(36000)
-         eboProductImportPage.validateTable();
-//         eboProductImportPage.downloadFile();
-//         eboProductImportPage.unzipFile(this.filePath.zipFile);
-         eboProductImportPage.readCsvFile(this.filePath.productCsv);
+          homePage.settingButton();
+          homePage.clickOnEboProduct();
+          eboProductImportPage.writeInCsv(this.filePath.demoCsv);
+          const file = 'product.csv';
+          eboProductImportPage.chooseFileButton(file);
+          cy.wait(6000)
+ //         eboProductImportPage.validateTable();
+ //         eboProductImportPage.downloadFile();
+ //         eboProductImportPage.unzipFile(this.filePath.zipFile);
+          eboProductImportPage.readCsvFile(this.filePath.productCsv);
          productsPage.catalogButton();
                 productsPage.clickOnProducts();
                 cy.wait(36000);
                 productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
+//                cy.wait(10000);
+//                productsPage.validateUGid();
                 cy.wait(10000);
-                productsPage.validateUGid();
-                cy.wait(10000);
-                SKU = productsPage.fetchSKU();
+                SKU=productsPage.fetchSKU();
+                cy.log("sku inside describe block: "+SKU)
+//                cy.log(SKU);
     })
 })
 
@@ -54,7 +56,8 @@ describe('Page Object Model', () => {
 
 describe('Magento API Describe Block', ()=>{
     it('Get A Product',()=>{
-        const apiPage = new APIPage(SKU);
-        apiPage.getAProductApi(getAProductRequest);
+        const apiPage = new APIPage();
+        cy.log(SKU);
+        apiPage.getAProductApi(getAProductRequest(SKU));
     })
 })
