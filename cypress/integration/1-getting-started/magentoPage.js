@@ -39,6 +39,9 @@ describe('Page Object Model', () => {
  //         eboProductImportPage.downloadFile();
  //         eboProductImportPage.unzipFile(this.filePath.zipFile);
           eboProductImportPage.readCsvFile(this.filePath.productCsv);
+          eboProductImportPage.clickOnImportButton();
+          cy.wait(5000);
+          eboProductImportPage.validateSuccessFullImport();
          productsPage.catalogButton();
                 productsPage.clickOnProducts();
                 cy.wait(36000);
@@ -61,3 +64,31 @@ describe('Magento API Describe Block', ()=>{
         apiPage.getAProductApi(getAProductRequest(SKU));
     })
 })
+
+//describe("Delete SKU from Magento", ()=>{
+//    beforeEach(function () {
+//            // "this" points at the test context object
+//            cy.fixture('credential').then((credential) => {
+//                // "this" is still the test context object
+//                this.credential = credential;
+//            })
+//            cy.fixture('product').then((productData) => {
+//                 // "this" is still the test context object
+//                 this.productData = productData;
+//            })
+//            cy.fixture('path').then((filePath) => {
+//                 // "this" is still the test context object
+//                 this.filePath = filePath;
+//            })
+//        })
+//     it("delete sku which has been recently added", function () {
+//         cy.login(this.credential.userName,this.credential.password);
+//         const productsPage = new ProductsPage();
+//         productsPage.catalogButton();
+//         productsPage.clickOnProducts();
+//         cy.wait(36000);
+//         productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
+//         cy.wait(10000);
+//         productsPage.deleteCreatedSku();
+//     })
+//})
