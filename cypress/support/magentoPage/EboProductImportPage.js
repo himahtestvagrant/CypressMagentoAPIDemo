@@ -38,7 +38,7 @@ class EboProductImportPage {
         });
     }
 
-    validateSuccessFullImport(){
+    validateSuccessfulImportFile(){
         cy.get('.messages > div').each(($el, index, $list) => {
             let text = $el.text();
             if(text.includes('Success records. Click') || text.includes('Odoo records. Click')){

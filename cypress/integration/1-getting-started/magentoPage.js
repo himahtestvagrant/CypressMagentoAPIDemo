@@ -41,7 +41,7 @@ describe('Page Object Model', () => {
           eboProductImportPage.readCsvFile(this.filePath.productCsv);
           eboProductImportPage.clickOnImportButton();
           cy.wait(5000);
-          eboProductImportPage.validateSuccessFullImport();
+          eboProductImportPage.validateSuccessfulImportFile();
          productsPage.catalogButton();
                 productsPage.clickOnProducts();
                 cy.wait(36000);
