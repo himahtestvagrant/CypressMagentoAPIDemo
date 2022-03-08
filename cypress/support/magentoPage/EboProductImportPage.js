@@ -38,6 +38,15 @@ class EboProductImportPage {
         });
     }
 
+    validateSuccessfulImportFile(){
+        cy.get('.messages > div').each(($el, index, $list) => {
+            let text = $el.text();
+            if(text.includes('Success records. Click') || text.includes('Odoo records. Click')){
+                cy.log("File has been added")
+            }else if(text.includes('Failed records. Click')) throw "File has not been uploaded";
+        })
+    }
+
     unzipFile(path){
         cy.task('unzipping', { path });
     }

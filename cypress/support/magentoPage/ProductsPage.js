@@ -108,7 +108,7 @@ class ProductsPage{
             cy.wrap($el).click();
         });
         cy.get('.col-xs-2 > .action-select-wrap > .action-select').click();
-        cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click();
+        cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click({force: true});
         cy.get('.action-primary').click();
     }
 
