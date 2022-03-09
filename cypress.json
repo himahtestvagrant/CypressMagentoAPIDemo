@@ -1,3 +1,4 @@
 {
-    "defaultCommandTimeout":36000
+    "defaultCommandTimeout":36000,
+    "video": false
 }

@@ -33,13 +33,15 @@ const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
 const unzipping = require('./unzipping')
 const writeInCsv = require('./writeInCsv')
 const readCsv = require('./readCsv')
+const createJson = require('./createJson')
 
 module.exports = (on, config) => {
     on('task', {
         'unzipping': unzipping.unzip,
         downloadFile,
         'writeInCsv': writeInCsv.writeCsv,
-        'readCsv': readCsv.readCsvFile
+        'readCsv': readCsv.readCsvFile,
+        'createJson': createJson.createJsonFile
     })
     allureWriter(on, config);
         return config;

@@ -87,6 +87,7 @@ class ProductsPage{
 
                    SKU = $el.next().next().text();
                    cy.log("sku inside each block: "+SKU);
+                    cy.task('createJson', { SKU });
 
 
             }
@@ -107,7 +108,7 @@ class ProductsPage{
         cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
             cy.wrap($el).click();
         });
-        cy.get('.col-xs-2 > .action-select-wrap > .action-select').click();
+        cy.get('.col-xs-2 > .action-select-wrap > .action-select').click({force: true});
         cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click({force: true});
         cy.get('.action-primary').click();
     }
