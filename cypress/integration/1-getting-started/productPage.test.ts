@@ -37,5 +37,11 @@ describe('Product Page Test Scenario', () => {
                 SKU=productsPage.fetchSKU();
                 cy.log("sku inside describe block: "+SKU)
 //                cy.log(SKU);
+                productsPage.enableSimpleProduct();
+                productsPage. magentoSystem();
+                cy.wait(20000);
+                productsPage.validateStatus();
+               // cy.wait(36000);
+               // productsPage.searchUniqueGroupId(this.productData[0].unique_group_id)
     })
 })

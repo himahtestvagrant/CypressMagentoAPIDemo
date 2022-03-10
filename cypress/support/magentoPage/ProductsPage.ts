@@ -101,6 +101,45 @@ class ProductsPage{
        
 
     }
+    enableSimpleProduct(){
+            cy.get('tr td:nth-child(9)', { timeout: 1000 }).each(($el, index, $list) => {
+            const text = $el.text();
+            if(text.includes("Disabled")){
+                // cy.get('tr td').scrollTo('right');
+                cy.get(`[data-bind="css: {'_odd-row': $index % 2}"][data-repeat-index="${index}"] > .data-grid-actions-cell > .action-menu-item`, { timeout: 1000 }).click({force: true});
+            }
+        });
+        }
+
+        magentoSystem(){
+            //cy.scrollIntoView('Magento-System');
+            cy.get('[data-index="magento-system"] > .fieldset-wrapper-title > .admin__collapsible-title').click({force: true});
+            cy.wait(5000);
+            cy.get('.admin__actions-switch-label').click();
+            cy.get('.admin__control-text[name="product[quantity_and_stock_status][qty]"]').clear().type('4');
+            cy.get('.admin__control-select[name="product[quantity_and_stock_status][is_in_stock]"]').select('1');
+            cy.get('#save-button').click();
+            cy.wait(10000);
+            //cy.get('#back').click();
+cy.go("back");
+cy.go("back");
+        }
+
+        validateStatus(){
+        let count =0;
+        cy.get('tr td:nth-child(9)', { timeout: 1000 }).each(($el, index, $list) => {
+                    const text = $el.text();
+                    if(text.includes("Enabled")){
+                        // cy.get('tr td').scrollTo('right');
+                        count+=1;
+                    }
+                });
+                 cy.wait(1000).then(()=>{
+                            if(count<=0) throw "File Not Found";
+                        })
+
+        }
+
 
     
 

@@ -18,5 +18,6 @@ describe('Magento API Test Scenario', () => {
             cy.log(this.SKU.SKU);
             let sku = this.SKU.SKU.trim();
             apiPage.getAProductApi(getAProductRequest(sku));
+            cy.wait(30000);
         })
 })
