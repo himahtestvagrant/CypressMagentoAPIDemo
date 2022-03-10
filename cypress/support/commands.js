@@ -30,7 +30,8 @@ Cypress.Commands.add('login', (userName, password) => {
     cy.get('#username').clear().type(userName);
     // cy.get('[type=password]', { timeout: 10000 }).should('be.visible');
     // cy.get('#login').click();
-    cy.get('#login').clear().type(password).type('{enter}');
+    cy.get('#login').clear();
+    cy.get('#login').type(password).type('{enter}');
 
 })
 
