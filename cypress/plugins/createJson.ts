@@ -8,9 +8,10 @@ const csv = require("csvtojson");
 //     end = new Date().getTime();
 // }
 //}
-const createJsonFile= async ({ SKU }) => {
+const createJsonFile= async ({ simpleProductSKU, configurableProductSKU }) => {
     let data = {
-                  "SKU" : SKU
+                  "simpleProductSKU" : simpleProductSKU,
+                  "configurableProductSKU" : configurableProductSKU
                   }
 //     fs.writeFileSync('./cypress/fixtures/SKU.json', data);
          fs.writeFileSync('./cypress/fixtures/SKU.json', JSON.stringify(data), "utf-8", (err) =>{

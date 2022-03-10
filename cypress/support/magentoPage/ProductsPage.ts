@@ -70,7 +70,8 @@ class ProductsPage{
         
     }
     fetchSKU(){
-         var SKU="";
+         var simpleProductSKU = "";
+         var configurableProductSKU = "";
          cy.get('tr td:nth-child(5)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
             if(text.includes('Configurable Product')){
@@ -85,19 +86,19 @@ class ProductsPage{
 
 //                return $el.next().next().text();
 
-                   SKU = $el.next().next().text();
-                   cy.log("sku inside each block: "+SKU);
-                    cy.task('createJson', { SKU });
-
-
+                   configurableProductSKU = $el.next().next().text().trim();
+                   cy.log("configurableProductSKU inside each block: "+configurableProductSKU);
+            }
+            else if(text.includes('Simple Product')){
+                 simpleProductSKU = $el.next().next().text().trim();
+                 cy.log("simpleProductSKU inside each block: "+simpleProductSKU);
             }
         });
-//        cy.wait(1000).then(()=>{
-//            cy.log("SKU outside of each block :- "+SKU);
-//                    return SKU;
-//        })
-         cy.log("SKU outside of each block :- "+SKU);
-                             return SKU;
+       cy.wait(1000).then(()=>{
+            cy.task('createJson', { simpleProductSKU, configurableProductSKU });
+       })
+         cy.log("SKU outside of each block :- "+configurableProductSKU);
+                             return configurableProductSKU;
        
 
     }
@@ -121,8 +122,8 @@ class ProductsPage{
             cy.get('#save-button').click();
             cy.wait(10000);
             //cy.get('#back').click();
-cy.go("back");
-cy.go("back");
+            cy.go("back");
+            cy.go("back");
         }
 
         validateStatus(){
