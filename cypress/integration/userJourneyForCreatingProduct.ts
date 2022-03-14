@@ -4,11 +4,14 @@ import APIPage from "../support/magentoPage/APIPage";
 import EboProductImportPage from "../support/magentoPage/EboProductImportPage"
 import { getAProductRequest } from "../fixtures/magentoPayload";
 import ProductsPage from "../support/magentoPage/ProductsPage";
+
 let SKU;
+
 const productsPage = new ProductsPage();
 const homePage = new HomePage();
 const eboProductImportPage = new EboProductImportPage();
 const apiPage = new APIPage();
+
 after(() => {
     cy.wait(5000);
     productsPage.deleteCreatedSku();
