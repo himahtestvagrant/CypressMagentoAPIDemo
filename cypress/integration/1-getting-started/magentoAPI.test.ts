@@ -15,8 +15,10 @@ describe('Magento API Test Scenario', () => {
     })  
     it('Get A Product PDP API',function (){
             const apiPage = new APIPage();
-            cy.log(this.SKU.SKU);
-            let sku = this.SKU.SKU.trim();
-            apiPage.getAProductApi(getAProductRequest(sku));
+            cy.log(this.SKU.configurableProductSKU);
+            let configurableProductSKU = this.SKU.configurableProductSKU;
+            let simpleProductSKU = this.SKU.simpleProductSKU;
+            apiPage.getAProductApi(getAProductRequest(configurableProductSKU),simpleProductSKU,configurableProductSKU);
+            cy.wait(15000);
         })
 })
