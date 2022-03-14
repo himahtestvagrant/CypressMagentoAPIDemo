@@ -13,7 +13,7 @@ class ProductsPage{
         try{
             cy.get('body').then((body) => {
                 if (body.find('._show> .admin__current-filters-actions-wrap > .action-clear',{ timeout: 10000 }).length > 0) {
-                    cy.wait(15000)
+                    cy.wait(5000)
                     cy.log("inside if condition")
                     cy.log("the length of result is"+ body.find(':nth-child(1) > .admin__data-grid-filters-current > .admin__current-filters-actions-wrap > .action-tertiary',{ timeout: 10000 }).length)
                     cy.get(':nth-child(1) > .admin__data-grid-filters-current > .admin__current-filters-actions-wrap > .action-tertiary',{ timeout: 10000 }).click({force:true});
@@ -47,9 +47,9 @@ class ProductsPage{
         cy.scrollTo('top');
          cy.get('.data-grid-filters-action-wrap >.action-default').eq(0).click({force: true});
          cy.wait(1000);
-        cy.get('.admin__control-text[name="unique_group_id"]').type(uniqueGroupId)
+        cy.get('.admin__control-text[name="unique_group_id"]').clear().type(uniqueGroupId)
         cy.wait(1000);
-        cy.get('.action-secondary').click()
+        cy.get('.action-secondary').click({force:true})
     
     }
 
@@ -103,7 +103,7 @@ class ProductsPage{
 
     }
     enableSimpleProduct(){
-            cy.get('tr td:nth-child(9)', { timeout: 1000 }).each(($el, index, $list) => {
+            cy.get('tr td:nth-child(8)', { timeout: 1000 }).each(($el, index, $list) => {
             const text = $el.text();
             if(text.includes("Disabled")){
                 // cy.get('tr td').scrollTo('right');
@@ -128,7 +128,7 @@ class ProductsPage{
 
         validateStatus(){
         let count =0;
-        cy.get('tr td:nth-child(9)', { timeout: 1000 }).each(($el, index, $list) => {
+        cy.get('tr td:nth-child(8)', { timeout: 1000 }).each(($el, index, $list) => {
                     const text = $el.text();
                     if(text.includes("Enabled")){
                         // cy.get('tr td').scrollTo('right');
