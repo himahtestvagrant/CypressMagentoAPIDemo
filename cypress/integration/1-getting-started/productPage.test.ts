@@ -39,8 +39,8 @@ describe('Product Page Test Scenario', () => {
 //                cy.log(SKU);
                 productsPage.enableSimpleProduct();
                 productsPage. magentoSystem();
-                cy.wait(30000);
-                productsPage.validateStatus();
+                cy.wait(25000);
+                productsPage.validateStatus(this.productData[0].unique_group_id);
                // cy.wait(36000);
                // productsPage.searchUniqueGroupId(this.productData[0].unique_group_id)
     })
