@@ -114,9 +114,9 @@ class ProductsPage{
 
         magentoSystem(){
             //cy.scrollIntoView('Magento-System');
-            cy.get('[data-index="magento-system"] > .fieldset-wrapper-title > .admin__collapsible-title').click({force: true});
+            cy.get('[data-index="magento-system"] > .fieldset-wrapper-title > .admin__collapsible-title', { timeout: 5000 }).click({force: true});
 //             cy.wait(5000);
-            cy.get('.admin__actions-switch-label').click();
+            cy.get('.admin__actions-switch-label', { timeout: 5000 }).click();
             cy.get('.admin__control-text[name="product[quantity_and_stock_status][qty]"]').clear().type('4');
             cy.get('.admin__control-select[name="product[quantity_and_stock_status][is_in_stock]"]').select('1');
             cy.get('#save-button').click();
@@ -136,7 +136,8 @@ class ProductsPage{
         })
         cy.wait(1000).then(()=>{
             if(cnt!=1){
-                 this.searchUniqueGroupId(uniqueGroupId)
+                 this.searchUniqueGroupId(uniqueGroupId);
+                 cy.wait(10000);
             }
         })
         let count =0;

@@ -52,7 +52,7 @@ describe('UserJourney for Importing a File and Validate in Magento API Test Scen
             this.productData = productData;
             productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
         })
-        cy.wait(5000);
+        cy.wait(10000);
         productsPage.fetchSKU();
         productsPage.enableSimpleProduct();
         productsPage.magentoSystem();
