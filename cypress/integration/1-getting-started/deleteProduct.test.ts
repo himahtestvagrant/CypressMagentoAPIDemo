@@ -29,6 +29,6 @@ describe("Delete SKU from Magento", ()=>{
          cy.wait(36000);
          productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
          cy.wait(10000);
-         productsPage.deleteCreatedSku();
+         productsPage.deleteCreatedProduct();
      })
 })

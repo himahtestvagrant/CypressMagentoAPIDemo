@@ -13,8 +13,8 @@ const eboProductImportPage = new EboProductImportPage();
 const apiPage = new APIPage();
 
 after(() => {
-    cy.wait(5000);
-    productsPage.deleteCreatedSku();
+    cy.wait(2000);
+    productsPage.deleteCreatedProduct();
 })
 describe('UserJourney for Importing a File and Validate in Magento API Test Scenario', () => {
     before(function () {
@@ -38,10 +38,10 @@ describe('UserJourney for Importing a File and Validate in Magento API Test Scen
         eboProductImportPage.writeInCsv(this.filePath.demoCsv);
         const file = 'product.csv';
         eboProductImportPage.chooseFileButton(file);
-        cy.wait(6000)
+//         cy.wait(6000)
         eboProductImportPage.readCsvFile(this.filePath.productCsv);
         eboProductImportPage.clickOnImportButton();
-        cy.wait(5000);
+//         cy.wait(5000);
         eboProductImportPage.validateSuccessfulImportFile();
     });
     it('validate the SKU in product page', function () {
@@ -56,13 +56,13 @@ describe('UserJourney for Importing a File and Validate in Magento API Test Scen
         productsPage.fetchSKU();
         productsPage.enableSimpleProduct();
         productsPage.magentoSystem();
-        cy.wait(25000);
+        cy.wait(30000);
         cy.fixture('product').then((productData) => {
             this.productData = productData;
-            productsPage.searchUniqueGroupId(this.productData[0].unique_group_id);
+            productsPage.validateStatus(this.productData[0].unique_group_id);
         })
         cy.wait(10000);
-        productsPage.validateStatus();
+//         productsPage.validateStatus();
     })
     it('Get A Product PDP API', function () {
         cy.fixture('SKU').then((SKU) => {
@@ -72,7 +72,7 @@ describe('UserJourney for Importing a File and Validate in Magento API Test Scen
             let simpleProductSKU = this.SKU.simpleProductSKU;
             apiPage.getAProductApi(getAProductRequest(configurableProductSKU), simpleProductSKU, configurableProductSKU);
         })
-        cy.wait(15000);
+//         cy.wait(2000);
     })
 })
 

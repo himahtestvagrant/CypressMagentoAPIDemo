@@ -39,7 +39,7 @@ class EboProductImportPage {
     }
 
     validateSuccessfulImportFile(){
-        cy.get('.messages > div').each(($el, index, $list) => {
+        cy.get('.messages > div',{ timeout: 10000 }).each(($el, index, $list) => {
             let text = $el.text();
             if(text.includes('Success records. Click') || text.includes('Odoo records. Click')){
                 cy.log("File has been added")
