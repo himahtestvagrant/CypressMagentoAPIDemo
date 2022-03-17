@@ -158,12 +158,30 @@ class ProductsPage{
     
 
     deleteCreatedProduct(){
-        cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
-            cy.wrap($el).click();
-        });
-        cy.get('.col-xs-2 > .action-select-wrap > .action-select').click({force: true});
-        cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click({force: true});
-        cy.get('.action-primary').click();
+        let count = 0;
+        cy.get('tr td:nth-child(5)', { timeout: 10000 }).each(($el, index, $list) => {
+             let text = $el.text();
+             if(text.includes('Simple Product')){
+                 count+=1;
+             }
+        })
+        cy.wait(1000).then(()=>{
+            if(count===1){
+                cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
+                    cy.wrap($el).click();
+                });
+                cy.get('.col-xs-2 > .action-select-wrap > .action-select').click({force: true});
+                cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click({force: true});
+                cy.get('.action-primary').click();
+            }
+            else throw "File has not been deleted";
+        })
+//         cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
+//             cy.wrap($el).click();
+//         });
+//         cy.get('.col-xs-2 > .action-select-wrap > .action-select').click({force: true});
+//         cy.get('.col-xs-2 > .action-select-wrap > .action-menu-items > .action-menu > :nth-child(1) > .action-menu-item').click({force: true});
+//         cy.get('.action-primary').click();
     }
 
 
