@@ -14,7 +14,7 @@ const apiPage = new APIPage();
 
 after(() => {
     cy.wait(2000);
-    productsPage.deleteCreatedSku();
+    productsPage.deleteCreatedProduct();
 })
 describe('UserJourney for Importing a File and Validate in Magento API Test Scenario', () => {
     before(function () {

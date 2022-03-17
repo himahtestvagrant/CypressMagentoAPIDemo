@@ -157,7 +157,7 @@ class ProductsPage{
 
     
 
-    deleteCreatedSku(){
+    deleteCreatedProduct(){
         cy.get("[data-bind=\"css: {'_odd-row': $index % 2}\"] > .data-grid-checkbox-cell").each(($el, index, $list) => {
             cy.wrap($el).click();
         });
