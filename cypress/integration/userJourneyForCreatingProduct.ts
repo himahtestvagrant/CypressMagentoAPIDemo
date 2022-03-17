@@ -56,12 +56,12 @@ describe('UserJourney for Importing a File and Validate in Magento API Test Scen
         productsPage.fetchSKU();
         productsPage.enableSimpleProduct();
         productsPage.magentoSystem();
-        cy.wait(25000);
+        cy.wait(30000);
         cy.fixture('product').then((productData) => {
             this.productData = productData;
             productsPage.validateStatus(this.productData[0].unique_group_id);
         })
-//         cy.wait(5000);
+        cy.wait(10000);
 //         productsPage.validateStatus();
     })
     it('Get A Product PDP API', function () {
