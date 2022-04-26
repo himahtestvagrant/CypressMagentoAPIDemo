@@ -31,9 +31,7 @@ jobs:
         
         
       - name: Cypress.io
-        uses: ./
-        with:
-          build: npx cypress info
+        uses: cypress-io/github-action@v2.9.7
         
 
       - name: Npm with no scheduler 
